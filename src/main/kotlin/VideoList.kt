@@ -1,7 +1,6 @@
 import kotlinx.html.js.onClickFunction
-import kotlinx.browser.window
 import react.*
-import react.dom.*
+import react.dom.p
 
 
 external interface VideoListProps: RProps {
@@ -13,6 +12,7 @@ external interface VideoListState: RState {
 }
 
 @JsExport
+@ExperimentalJsExport
 class VideoList: RComponent<VideoListProps, VideoListState>() {
     override fun RBuilder.render() {
         for (video in props.videos) {
@@ -21,7 +21,11 @@ class VideoList: RComponent<VideoListProps, VideoListState>() {
                 attrs {
                     onClickFunction = {
                         setState {
-                            selectedVideo = video
+                            selectedVideo = if (state.selectedVideo == video) {
+                                null
+                            } else {
+                                video
+                            }
                         }
                     }
                 }

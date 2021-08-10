@@ -5,6 +5,7 @@ import styled.css
 import styled.styledDiv
 
 @JsExport
+@ExperimentalJsExport
 class App : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
         h1 {
